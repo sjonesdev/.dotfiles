@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# useful for debugging
+# set -ex
+
+command_exists() {
+	type "$1" &> /dev/null ;
+}
+
+# TODO maybe add basic network config
+
+# can be not enabled on fresh arch install
+# this isn't perfect because it technically doesn't actually check the enablement state of the service, per se
+echo "Activating networkd and resolved if necessary..."
+systemctl is-active --quiet systemd-networkd || (sudo systemctl enable systemd-networkd && sudo systemctl start systemd-networkd)
+systemctl is-active --quiet systemd-resolved || (sudo systemctl enable systemd-resolved && sudo systemctl start systemd-resolved)
+
+# fix resolv.conf
+# TODO only do if needed
+echo "Fixing resolv.conf..."
+sudo rm /etc/resolv.conf
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
+# enable en_US and set locale and us x11 keymap
+# TODO only do if needed
+echo "Setting locale..."
+sudo sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
+sudo locale-gen
+localectl set-x11-keymap us
+localectl set-locale LANG=en_US.UTF-8
+
+# install packages
+ARCH_PACKAGES=(
+	git base-devel # these should be already installed via yay installation
+	grub efibootmgr sbctl # uefi stuff
+	amd-ucode # micro code patches, may also need intel-ucode
+	man-db man-pages texinfo # pkg info
+	which sudo coreutils stow # system tools
+	jujutsu github-cli code nix direnv # devtools
+	curl wget dnsutils # internet
+	zip unzip # file tools
+	fish kitty zellij neovim nano # terminal stuff
+	flatpak # for proprietary software not on AUR
+ 	google-chrome zen-browser-bin firefox librewolf-bin # browsers
+	plasma-desktop sddm hyprland xdg-desktop-portal-gtk xdg-desktop-portal-hyprland # display
+	dolphin yazi # file managers
+	wofi # menu/launcher, maybe try fuzzel instead
+	orca-slicer-bin # 3d printing
+	podman # containers, TODO maybe add podman-compose
+)
+
+FLATPAK_PACKAGES=(
+	com.discordapp.Discord com.spotify.Client
+	com.valvesoftware.Steam com.modrinth.ModrinthApp
+)
+
+if command_exists yay ; then
+	echo "yay already installed, skipping..."
+else
+	echo "Upgrading with pacman then installing yay..."
+	sudo pacman -Syu
+	sudo pacman -S --noconfirm --needed git base-devel
+	git clone https://aur.archlinux.org/yay-bin.git
+	cd yay-bin
+	makepkg -si
+	yay --version
+	cd ..
+	rm -rf yay-bin
+fi
+echo "Installing/upgrading all packgages"
+yay -Syu --noconfirm --needed "${ARCH_PACKAGES[@]}"
+
+flatpak install flathub "${FLATPAK_PACKAGES[@]}"
+
+# enable nix
+systemctl is-active --quiet nix-daemon || (sudo systemctl enable nix-daemon && sudo systemctl start nix-daemon)
+
+# install devenv
+if ! command_exists devenv ; then
+	echo "Installing devenv..."
+	nix-env --install --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
+else
+	echo "Upgrading devenv..."
+	nix-env --upgrade --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
+fi
+
+PASSWD_ENTRY_STR=$(cat /etc/passwd | grep $(whoami))
+# TODO only do this if needed
+chsh -s /bin/fish
+
+echo "Use \`yay -Sua\` to upgrade AUR packages, including yay itself"
+
+gh auth status
