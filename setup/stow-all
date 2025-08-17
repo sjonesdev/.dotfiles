@@ -12,6 +12,7 @@ dirs=(
 	zellij
 	gh
 	git
+	pipewire
 )
 
 if [ -d "$HOME/.dotfiles" ]; then

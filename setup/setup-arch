@@ -49,10 +49,12 @@ ARCH_PACKAGES=(
 	orca-slicer-bin # 3d printing
 	podman # containers, TODO maybe add podman-compose
 	qmk-git python-pygments python-pyserial python-pillow # keyboard programming (AUR version) and missing deps
+	pipewire wireplumber pipewire-pulse pipewire-jack pavucontrol # audio, may also need lib32-pipewire for multilib support for steam if install directly
+	discord
 )
 
 FLATPAK_PACKAGES=(
-	com.discordapp.Discord com.spotify.Client
+	com.spotify.Client
 	com.valvesoftware.Steam com.modrinth.ModrinthApp
 	com.github.tchx84.Flatseal
 )
