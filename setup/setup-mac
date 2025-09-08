@@ -1,0 +1,70 @@
+#!/bin/zsh
+
+# useful for debugging
+# set -ex
+
+PROFILE="$1"
+
+if [ "$PROFILE" = "work" ]; then
+	IS_PERSONAL=false
+elif [ "$PROFILE" = "home" ]; then
+	IS_PERSONAL=true
+else
+	echo "no profile argument passed, please pass \"home\" or \"work\" as the first argument"
+	exit 1
+fi
+
+command_exists() {
+	type "$1" &> /dev/null ;
+}
+
+# todo add app launcher
+BREW_BREWS=(
+	wget2
+	man-db 
+	jj gh
+	fish zellij
+)
+
+# I think this doesn't work for some reason
+BREW_CASKS=(
+	visual-studio-code kitty
+	google-chrome
+	spotify
+)
+
+PERSONAL_BREW_BREWS=(
+	podman
+)
+
+PERSONAL_BREW_CASKS=(
+	discord steam modrinth # gaming
+	orcaslicer # 3dp
+)
+
+WORK_BREW_BREWS=(
+	docker
+)
+
+WORK_BREW_CASKS=(
+	firefox zen # librewolf broke
+)
+
+if ! command_exists nix ; then
+	curl -L https://github.com/NixOS/experimental-nix-installer/releases/download/0.27.0/nix-installer.sh | sh -s -- install
+fi
+
+# TODO add devenv
+
+brew install "${BREW_BREWS[@]}"
+brew install --cask "${BREW_CASKS[@]}"
+
+if [ "$IS_PERSONAL" = true ]; then
+	brew install "${PERSONAL_BREW_BREWS[@]}"
+	brew install --cask "${PERSONAL_BREW_CASKS[@]}"
+else
+	brew install "${WORK_BREW_BREWS[@]}"
+	brew install --cask "${WORK_BREW_CASKS[@]}"
+fi
+
+gh auth status
