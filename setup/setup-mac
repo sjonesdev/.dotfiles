@@ -24,6 +24,7 @@ BREW_BREWS=(
 	man-db 
 	jj gh
 	fish zellij
+	stow
 )
 
 # I think this doesn't work for some reason
@@ -65,6 +66,13 @@ if [ "$IS_PERSONAL" = true ]; then
 else
 	brew install "${WORK_BREW_BREWS[@]}"
 	brew install --cask "${WORK_BREW_CASKS[@]}"
+fi
+
+cat /etc/shells | grep fish
+if [[ $? -eq 1 ]]; then
+	echo "adding fish to list of allowable shells and setting as user shell"
+	echo "/opt/homebrew/bin/fish" | sudo tee -a /etc/shells
+	chsh -s /opt/homebrew/bin/fish
 fi
 
 gh auth status
