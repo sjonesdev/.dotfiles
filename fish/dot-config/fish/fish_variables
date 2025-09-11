@@ -1,5 +1,22 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export AWS_REGION:us\x2deast\x2d1
+SETUVAR --export DBT_PROFILES_DIR:/Users/sjones/Documents/code/kimono/transform/dbt_transforms
+SETUVAR --export DBT_PROJECT_DIR:/Users/sjones/Documents/code/kimono/transform/dbt_transforms
+SETUVAR --export GITHUB_USERNAME:sjones
+SETUVAR --export JAVA_HOME:/Library/Java/JavaVirtualMachines/amazon\x2dcorretto\x2d21\x2ejdk/Contents/Home
+SETUVAR --export KMO_HOME:/Users/sjones/Documents/code/kimono/
+SETUVAR --export KMO_SNOWFLAKE_USERNAME:SJONES\x40FLEXPORT\x2eCOM
+SETUVAR --export NVM_DIR:/Users/sjones/\x2envm
+SETUVAR --export PYENV_ROOT:/Users/sjones/\x2epyenv
+SETUVAR --export SNOWFLAKE_USERNAME:SJONES\x40FLEXPORT\x2eCOM
+SETUVAR --export SNOWFLAKE_WAREHOUSE_DYNAMIC_M:DBT_DEV_M
+SETUVAR --export SNOWFLAKE_WAREHOUSE_L:DBT_DEV_L
+SETUVAR --export SNOWFLAKE_WAREHOUSE_M:DBT_DEV_M
+SETUVAR --export SNOWFLAKE_WAREHOUSE_S:DBT_DEV_S
+SETUVAR --export SNOWFLAKE_WAREHOUSE_XL:DBT_DEV_XL
+SETUVAR --export SNOWFLAKE_WAREHOUSE_XS:DBT_DEV_XS
+SETUVAR --export SOURCE_SCRIPT_DIR:/Users/sjones/IdeaProjects/infra\x2ddeployer
 SETUVAR __fish_initialized:3800
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
