@@ -40,12 +40,5 @@ if status is-interactive
 end
 
 if status --is-login
-    set -Ux NVM_DIR "$HOME/.nvm"
-    set NVM_INSTALL_DIR "$HOMEBREW_PREFIX/opt/nvm"
-    if test -s "$NVM_INSTALL_DIR/nvm.sh" 
-        source "$NVM_INSTALL_DIR/nvm.sh"
-    end
-    if test -s "$NVM_INSTALL_DIR/etc/bash_completion.d/nvm"
-        source "$NVM_INSTALL_DIR/etc/bash_completion.d/nvm"
-    end
+    # login stuff here
 end

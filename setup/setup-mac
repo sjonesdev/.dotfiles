@@ -25,6 +25,7 @@ BREW_BREWS=(
 	jj gh
 	fish zellij
 	stow
+	fisher
 )
 
 # I think this doesn't work for some reason
@@ -41,14 +42,15 @@ PERSONAL_BREW_BREWS=(
 PERSONAL_BREW_CASKS=(
 	discord steam modrinth # gaming
 	orcaslicer # 3dp
+	firefox zen # librewolf broke
 )
 
 WORK_BREW_BREWS=(
 	docker
+	nodenv
 )
 
 WORK_BREW_CASKS=(
-	firefox zen # librewolf broke
 )
 
 if ! command_exists nix ; then
@@ -65,9 +67,11 @@ if [ "$IS_PERSONAL" = true ]; then
 	brew install --cask "${PERSONAL_BREW_CASKS[@]}"
 else
 	brew install "${WORK_BREW_BREWS[@]}"
-	brew install --cask "${WORK_BREW_CASKS[@]}"
+	# brew install --cask "${WORK_BREW_CASKS[@]}"
 fi
+fisher update
 
+# check for fish in list of valid shells
 cat /etc/shells | grep fish
 if [[ $? -eq 1 ]]; then
 	echo "adding fish to list of allowable shells and setting as user shell"

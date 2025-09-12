@@ -1,14 +1,15 @@
 if status is-interactive
-    switch (uname)
-        case Darwin
-            fish_add_path /opt/homebrew/bin
-    end
+
 end
 
 if status --is-login
-    # login shell stuff here
+    switch (uname)
+        case Darwin
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+    end
 end
 
+# TODO figure out if there's a better way for me to do this
 if test -d $HOME/flexport
     echo "Configuring for work"
     set dir (dirname (status -f))
