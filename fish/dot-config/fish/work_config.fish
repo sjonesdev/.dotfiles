@@ -1,21 +1,22 @@
 if status is-interactive
-    # exported for all fish shells (and write to disk)
-    set -Ux JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home
-    set -Ux GITHUB_USERNAME sjones
-    set -Ux SOURCE_SCRIPT_DIR /Users/sjones/IdeaProjects/infra-deployer
-    set -Ux SNOWFLAKE_USERNAME "SJONES@FLEXPORT.COM"
-    set -Ux KMO_HOME /Users/sjones/Documents/code/kimono/
-    set -Ux KMO_SNOWFLAKE_USERNAME "SJONES@FLEXPORT.COM"
-    set -Ux AWS_REGION us-east-1
-    set -Ux SNOWFLAKE_WAREHOUSE_XS "DBT_DEV_XS"
-    set -Ux SNOWFLAKE_WAREHOUSE_S "DBT_DEV_S"
-    set -Ux SNOWFLAKE_WAREHOUSE_M "DBT_DEV_M"
-    set -Ux SNOWFLAKE_WAREHOUSE_L "DBT_DEV_L"
-    set -Ux SNOWFLAKE_WAREHOUSE_XL "DBT_DEV_XL"
-    set -Ux SNOWFLAKE_WAREHOUSE_DYNAMIC_M "DBT_DEV_M"
-    set -Ux DBT_PROJECT_DIR "/Users/sjones/Documents/code/kimono/transform/dbt_transforms"
-    set -Ux DBT_PROFILES_DIR "/Users/sjones/Documents/code/kimono/transform/dbt_transforms"
-    set -Ux PYENV_ROOT $HOME/.pyenv
+    # https://fishshell.com/docs/current/cmds/set.html
+    set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home
+    set -gx GITHUB_USERNAME sjones
+    set -gx SOURCE_SCRIPT_DIR /Users/sjones/IdeaProjects/infra-deployer
+    set -gx SNOWFLAKE_USERNAME "SJONES@FLEXPORT.COM"
+    set -gx KMO_HOME /Users/sjones/Documents/code/kimono/
+    set -gx KMO_SNOWFLAKE_USERNAME "SJONES@FLEXPORT.COM"
+    set -gx AWS_REGION us-east-1
+    set -gx SNOWFLAKE_WAREHOUSE_XS "DBT_DEV_XS"
+    set -gx SNOWFLAKE_WAREHOUSE_S "DBT_DEV_S"
+    set -gx SNOWFLAKE_WAREHOUSE_M "DBT_DEV_M"
+    set -gx SNOWFLAKE_WAREHOUSE_L "DBT_DEV_L"
+    set -gx SNOWFLAKE_WAREHOUSE_XL "DBT_DEV_XL"
+    set -gx SNOWFLAKE_WAREHOUSE_DYNAMIC_M "DBT_DEV_M"
+    set -gx DBT_PROJECT_DIR "/Users/sjones/Documents/code/kimono/transform/dbt_transforms"
+    set -gx DBT_PROFILES_DIR "/Users/sjones/Documents/code/kimono/transform/dbt_transforms"
+    set -gx PYENV_ROOT $HOME/.pyenv
+    source (dirname (status -f))/.env.fish
   
     alias k="kubectl"
     alias mpr="/Users/sjones/flexport/mpr"
