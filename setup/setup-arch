@@ -54,6 +54,7 @@ ARCH_PACKAGES=(
 	vulkan-tools mesa-utils lib32-mesa-utils # graphics
 	lm_sensors psensor lact amdgpu_top
 	rrdtool # for sensord
+	rsync # backups
 )
 
 FLATPAK_PACKAGES=(
