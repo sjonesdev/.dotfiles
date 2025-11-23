@@ -52,7 +52,8 @@ ARCH_PACKAGES=(
 	pipewire wireplumber pipewire-pulse pipewire-jack pavucontrol # audio, may also need lib32-pipewire for multilib support for steam if install directly
 	discord gamescope steam # will install mesa, pick vulkan-radeon 
 	vulkan-tools mesa-utils lib32-mesa-utils # graphics
-	lm_sensors psensor lact
+	lm_sensors psensor lact amdgpu_top
+	rrdtool # for sensord
 )
 
 FLATPAK_PACKAGES=(
