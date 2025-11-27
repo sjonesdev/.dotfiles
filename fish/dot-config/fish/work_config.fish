@@ -40,6 +40,7 @@ if status is-interactive
     # fish_add_path "$HOME/.rvm/bin"
     # TODO conditionally load nvm and rvm instead of putting them in global functions folder to always be loaded
     rvm ruby-2.7.7
+    nvm use 18.17.1
 end
 
 if status --is-login

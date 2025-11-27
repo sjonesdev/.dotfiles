@@ -48,6 +48,9 @@ PERSONAL_BREW_CASKS=(
 WORK_BREW_BREWS=(
 	docker
 	nodenv
+	git-lfs
+	envoy
+	grpcui
 )
 
 WORK_BREW_CASKS=(
@@ -68,6 +71,9 @@ if [ "$IS_PERSONAL" = true ]; then
 else
 	brew install "${WORK_BREW_BREWS[@]}"
 	# brew install --cask "${WORK_BREW_CASKS[@]}"
+	# TODO add naws setup
+	npm config set @ffa:registry https://artifactory.flexport.io/artifactory/api/npm/ffa-infra-npm-dev-local
+	npm install -g @ffa/naws-cli
 fi
 fisher update
 
