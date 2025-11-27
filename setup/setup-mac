@@ -33,6 +33,7 @@ BREW_CASKS=(
 	visual-studio-code kitty
 	google-chrome
 	spotify
+	zen
 )
 
 PERSONAL_BREW_BREWS=(
