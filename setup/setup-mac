@@ -26,6 +26,7 @@ BREW_BREWS=(
 	fish zellij
 	stow
 	fisher
+	zig
 )
 
 # I think this doesn't work for some reason
@@ -52,6 +53,7 @@ WORK_BREW_BREWS=(
 	git-lfs
 	envoy
 	grpcui
+	yq
 )
 
 WORK_BREW_CASKS=(
