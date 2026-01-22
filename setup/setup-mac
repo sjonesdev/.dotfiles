@@ -54,6 +54,7 @@ WORK_BREW_BREWS=(
 	envoy
 	grpcui
 	yq
+	tfenv
 )
 
 WORK_BREW_CASKS=(
