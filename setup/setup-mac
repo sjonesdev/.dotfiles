@@ -18,67 +18,18 @@ command_exists() {
 	type "$1" &> /dev/null ;
 }
 
-# todo add app launcher
-BREW_BREWS=(
-	wget2
-	man-db 
-	jj gh
-	fish zellij
-	stow
-	fisher
-	zig
-	rust
-)
-
-# I think this doesn't work for some reason
-BREW_CASKS=(
-	visual-studio-code kitty
-	google-chrome
-	spotify
-	zen
-	ghostty
-)
-
-PERSONAL_BREW_BREWS=(
-	podman
-)
-
-PERSONAL_BREW_CASKS=(
-	discord steam modrinth # gaming
-	orcaslicer # 3dp
-	firefox zen # librewolf broke
-)
-
-WORK_BREW_BREWS=(
-	docker
-	nodenv
-	git-lfs
-	envoy
-	grpcui
-	yq
-	tfenv
-)
-
-WORK_BREW_CASKS=(
-	intellij-idea
-	conductor
-)
-
 if ! command_exists nix ; then
 	curl -L https://github.com/NixOS/experimental-nix-installer/releases/download/0.27.0/nix-installer.sh | sh -s -- install
 fi
 
 # TODO add devenv
 
-brew install "${BREW_BREWS[@]}"
-brew install --cask "${BREW_CASKS[@]}"
+brew bundle --file "$HOME/.dotfiles/setup/base/Brewfile"
 
 if [ "$IS_PERSONAL" = true ]; then
-	brew install "${PERSONAL_BREW_BREWS[@]}"
-	brew install --cask "${PERSONAL_BREW_CASKS[@]}"
+	brew bundle --file "$HOME/.dotfiles/setup/home/Brewfile"
 else
-	brew install "${WORK_BREW_BREWS[@]}"
-	brew install --cask "${WORK_BREW_CASKS[@]}"
+	brew bundle --file "$HOME/.dotfiles/setup/work/Brewfile"
 	# TODO add naws setup
 	npm config set @ffa:registry https://artifactory.flexport.io/artifactory/api/npm/ffa-infra-npm-dev-local
 	npm install -g @ffa/naws-cli

@@ -1,0 +1,18 @@
+# todo add app launcher
+brew "wget2"
+brew "man-db" 
+brew "jj" 
+brew "gh"
+brew "fish" 
+brew "zellij"
+brew "stow"
+brew "fisher"
+brew "zig"
+brew "rust"
+
+cask "visual-studio-code"
+cask "kitty"
+cask "google-chrome"
+cask "spotify"
+cask "zen"
+cask "ghostty"

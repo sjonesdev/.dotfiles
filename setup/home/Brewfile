@@ -1,0 +1,14 @@
+brew "podman"
+
+# gaming
+cask "discord" 
+cask "steam" 
+cask "modrinth"
+
+# 3dp
+cask "orcaslicer"
+
+# browsers 
+# cask "librewolf" broke
+cask "firefox" 
+cask "zen" 

@@ -1,0 +1,10 @@
+brew "docker"
+brew "nodenv"
+brew "git-lfs"
+brew "envoy"
+brew "grpcui"
+brew "yq"
+brew "tfenv"
+
+cask "intellij-idea"
+cask "conductor"

@@ -1,0 +1,36 @@
+#!/usr/env/bin bash
+
+PROFILE="$1"
+
+install_homebrew_and_gh() {
+    export HOMEBREW_NO_INSTALL_FROM_API=1
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install gh
+    gh auth login
+}
+
+clone_dotfiles() {
+    gh repo clone sjonesdev/.dotfiles "$HOME/.dotfiles"
+}
+
+if [ -z "$PROFILE" ]; then
+    echo "default setup (home arch) unimplemented"
+    exit 1
+elif [ "$PROFILE" = "work" ]; then
+    get_gh_access
+    clone_dotfiles
+    curl -O https://raw.githubusercontent.com/flexport/flexport/refs/heads/master/monorail/scripts/setup.sh
+    chmod +x setup.sh
+    ./setup.sh
+    rm setup.sh
+    "$HOME/.dotfiles/setup/setup-mac work"
+elif [ "$PROFILE" = "home" ]; then
+    get_gh_access
+    clone_dotfiles
+    "$HOME/.dotfiles/setup/setup-mac home"
+else
+	echo "no profile argument passed, please pass \"home\" or \"work\" as the first argument"
+	exit 1
+fi
+
+"$HOME/.dotfiles/setup/stow-all"
