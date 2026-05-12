@@ -27,6 +27,7 @@ BREW_BREWS=(
 	stow
 	fisher
 	zig
+	rust
 )
 
 # I think this doesn't work for some reason
@@ -35,6 +36,7 @@ BREW_CASKS=(
 	google-chrome
 	spotify
 	zen
+	ghostty
 )
 
 PERSONAL_BREW_BREWS=(
@@ -58,6 +60,8 @@ WORK_BREW_BREWS=(
 )
 
 WORK_BREW_CASKS=(
+	intellij-idea
+	conductor
 )
 
 if ! command_exists nix ; then
@@ -74,10 +78,11 @@ if [ "$IS_PERSONAL" = true ]; then
 	brew install --cask "${PERSONAL_BREW_CASKS[@]}"
 else
 	brew install "${WORK_BREW_BREWS[@]}"
-	# brew install --cask "${WORK_BREW_CASKS[@]}"
+	brew install --cask "${WORK_BREW_CASKS[@]}"
 	# TODO add naws setup
 	npm config set @ffa:registry https://artifactory.flexport.io/artifactory/api/npm/ffa-infra-npm-dev-local
 	npm install -g @ffa/naws-cli
+	git lfs install
 fi
 fisher update
 
