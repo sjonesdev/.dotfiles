@@ -1,5 +1,6 @@
 if status is-interactive
     # https://fishshell.com/docs/current/cmds/set.html
+    set -gx NODE_EXTRA_CA_CERTS "$HOME/.claude/flexport_root_ca_g1.pem"
     set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-21.jdk/Contents/Home
     set -gx GITHUB_USERNAME sjones
     set -gx SOURCE_SCRIPT_DIR /Users/sjones/IdeaProjects/infra-deployer
@@ -23,6 +24,7 @@ if status is-interactive
     alias bastion_ssh='~/flexport/env-improvement/bin/bastion ssh'
     alias dbt-defer="$DBT_PROJECT_DIR/scripts/dbt-defer.sh"
     alias my_kimono='echo /Users/sjones/Documents/code/kimono/transform'
+    alias claude_update='gh api "repos/flexport/claude_code/contents/claude_code_setup.ts" -H "Accept: application/vnd.github.v3.raw" | bun -'
 
     fish_add_path /opt/homebrew/Cellar/llvm@14/14.0.6/bin
     fish_add_path $(go env GOPATH)/bin

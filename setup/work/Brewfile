@@ -5,6 +5,8 @@ brew "envoy"
 brew "grpcui"
 brew "yq"
 brew "tfenv"
+brew "oven-sh/bun/bun"
+brew "logcli"
 
 cask "intellij-idea"
 cask "conductor"

@@ -8,7 +8,7 @@ brew "zellij"
 brew "stow"
 brew "fisher"
 brew "zig"
-brew "rust"
+brew "rustup"
 
 cask "visual-studio-code"
 cask "kitty"
