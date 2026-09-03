@@ -6,6 +6,7 @@ mac_dirs=(
 	kitty
 	fish
 	zellij
+	nvm
 )
 # TODO add zsh and maybe bash
 # gh git add once figure out how need to change for work

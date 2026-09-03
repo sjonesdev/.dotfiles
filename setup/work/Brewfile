@@ -7,6 +7,8 @@ brew "yq"
 brew "tfenv"
 brew "oven-sh/bun/bun"
 brew "logcli"
+brew "snowflake-cli"
 
 cask "intellij-idea"
 cask "conductor"
+cask "opencode-desktop"

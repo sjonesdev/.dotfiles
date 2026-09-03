@@ -30,12 +30,7 @@ if [ "$IS_PERSONAL" = true ]; then
 	brew bundle --file "$HOME/.dotfiles/setup/home/Brewfile"
 else
 	brew bundle --file "$HOME/.dotfiles/setup/work/Brewfile"
-	# TODO add naws setup
-	npm config set @ffa:registry https://artifactory.flexport.io/artifactory/api/npm/ffa-infra-npm-dev-local
-	npm install -g @ffa/naws-cli
-	git lfs install
 fi
-fisher update
 
 # check for fish in list of valid shells
 cat /etc/shells | grep fish
@@ -43,6 +38,11 @@ if [[ $? -eq 1 ]]; then
 	echo "adding fish to list of allowable shells and setting as user shell"
 	echo "/opt/homebrew/bin/fish" | sudo tee -a /etc/shells
 	chsh -s /opt/homebrew/bin/fish
+	echo 'fisher update' | fish
+fi
+
+if [ "$IS_PERSONAL" = false ]; then
+	fish "$HOME/.config/fish/work_setup.fish"
 fi
 
 gh auth status
