@@ -1,8 +1,9 @@
-#!/usr/env/bin bash
+#!/usr/bin/env bash
 
 PROFILE="$1"
 
 install_homebrew_and_gh() {
+    # TODO add check for homebrew and gh before installing
     export HOMEBREW_NO_INSTALL_FROM_API=1
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew install gh

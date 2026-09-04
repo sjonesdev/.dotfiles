@@ -21,8 +21,7 @@ command_exists() {
 if ! command_exists nix ; then
 	curl -L https://github.com/NixOS/experimental-nix-installer/releases/download/0.27.0/nix-installer.sh | sh -s -- install
 fi
-
-# TODO add devenv
+nix profile install nixpkgs#devenv
 
 brew bundle --file "$HOME/.dotfiles/setup/base/Brewfile"
 
@@ -41,8 +40,10 @@ if [[ $? -eq 1 ]]; then
 	echo 'fisher update' | fish
 fi
 
-if [ "$IS_PERSONAL" = false ]; then
-	fish "$HOME/.config/fish/work_setup.fish"
+if [ "$IS_PERSONAL" = true ]; then
+	fish "$HOME/.dotfiles/setup/home_setup.fish"
+else
+	fish "$HOME/.dotfiles/setup/work_setup.fish"
 fi
 
 gh auth status

@@ -1,4 +1,5 @@
 brew "podman"
+brew "direnv"
 
 # gaming
 cask "discord" 
