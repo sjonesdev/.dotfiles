@@ -2,7 +2,14 @@
 
 # directories in this repo containing dotfiles
 # TODO add personal vs work mac
-mac_dirs=(
+home_mac_dirs=(
+	kitty
+	fish
+	zellij
+	gh
+	git
+)
+work_mac_dirs=(
 	kitty
 	fish
 	zellij
@@ -29,12 +36,16 @@ else
 	exit 1
 fi
 
+# TODO use uname instead
 if [ "$1" = "arch" ]; then
 	echo "Stowing arch dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
-	dirs=$arch_dirs
-elif [ "$1" = "mac" ]; then
-	echo "Stowing mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
-	dirs=$mac_dirs
+	dirs=${arch_dirs[@]}
+elif [ "$1" = "home" ]; then
+	echo "Stowing home mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
+	dirs=${home_mac_dirs[@]}
+elif [ "$1" = "work" ]; then
+	echo "Stowing work mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
+	dirs=${work_mac_dirs[@]}
 else
 	echo "Unrecognized system, please specify \"arch\" or \"mac\" as first argument"
 	exit 1
@@ -46,7 +57,9 @@ fi
 # --dotfiles Change dot-<name> files to .<name> when stowing
 # -t target directory to stow into
 # $dir subdirectory of dotfiles repo to symlink dotfiles from into target
+echo "Stowing $dirs"
 for dir in ${dirs[@]}; do
+	echo "Stowing $dir"
 	stow -d "$HOME/.dotfiles" -v -R --dotfiles -t "$HOME" $dir
 done
 

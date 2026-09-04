@@ -14,4 +14,6 @@ if test -d $HOME/flexport
     echo "Configuring for work"
     set dir (dirname (status -f))
     source $dir/work_config.fish
+else
+    direnv hook fish | source
 end
