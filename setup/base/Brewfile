@@ -7,8 +7,6 @@ brew "fish"
 brew "zellij"
 brew "stow"
 brew "fisher"
-brew "zig"
-brew "rustup"
 brew "anomalyco/tap/opencode"
 
 cask "visual-studio-code"
