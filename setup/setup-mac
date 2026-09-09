@@ -21,7 +21,9 @@ command_exists() {
 if ! command_exists nix ; then
 	curl -L https://github.com/NixOS/experimental-nix-installer/releases/download/0.27.0/nix-installer.sh | sh -s -- install
 fi
-nix profile install nixpkgs#devenv
+if ! command_exists devenv ; then
+	nix profile install nixpkgs#devenv
+fi
 
 brew bundle --file "$HOME/.dotfiles/setup/base/Brewfile"
 

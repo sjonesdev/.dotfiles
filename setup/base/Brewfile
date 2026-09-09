@@ -9,6 +9,7 @@ brew "stow"
 brew "fisher"
 brew "anomalyco/tap/opencode"
 
+cask "postman"
 cask "visual-studio-code"
 cask "kitty"
 cask "google-chrome"
