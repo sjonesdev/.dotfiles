@@ -48,9 +48,10 @@ if [[ $? -eq 1 ]]; then
 fi
 
 if [ "$IS_PERSONAL" = true ]; then
-	fish "$HOME/.dotfiles/setup/home_setup.fish"
+	echo "No extra home setup to do"
 else
-	fish "$HOME/.dotfiles/setup/work_setup.fish"
+	echos "Perfoming extra setup for work"
+	fish "$HOME/.config/fish/work/extra_setup.fish"
 fi
 
 echo "GitHub auth status:"

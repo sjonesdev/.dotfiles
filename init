@@ -14,6 +14,7 @@ clone_dotfiles() {
     gh repo clone sjonesdev/.dotfiles "$HOME/.dotfiles"
 }
 
+# TODO set a global default profile variable after this script runs for the first time that we can use as a default for later runs
 if [ -z "$PROFILE" ]; then
     echo "default setup (home arch) unimplemented"
     exit 1
