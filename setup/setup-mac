@@ -19,17 +19,22 @@ command_exists() {
 }
 
 if ! command_exists nix ; then
+	echo "Installing Nix"
 	curl -L https://github.com/NixOS/experimental-nix-installer/releases/download/0.27.0/nix-installer.sh | sh -s -- install
 fi
 if ! command_exists devenv ; then
+	echo "Installing devenv"
 	nix profile install nixpkgs#devenv
 fi
 
+echo "Installing base homebrew packages"
 brew bundle --file "$HOME/.dotfiles/setup/base/Brewfile"
 
 if [ "$IS_PERSONAL" = true ]; then
+	echo "Installing home homebrew packages"
 	brew bundle --file "$HOME/.dotfiles/setup/home/Brewfile"
 else
+	echo "Installing work homebrew packages"
 	brew bundle --file "$HOME/.dotfiles/setup/work/Brewfile"
 fi
 
@@ -48,4 +53,5 @@ else
 	fish "$HOME/.dotfiles/setup/work_setup.fish"
 fi
 
+echo "GitHub auth status:"
 gh auth status
