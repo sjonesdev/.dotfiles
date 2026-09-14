@@ -50,7 +50,7 @@ fi
 if [ "$IS_PERSONAL" = true ]; then
 	echo "No extra home setup to do"
 else
-	echos "Perfoming extra setup for work"
+	echo "Perfoming extra setup for work"
 	fish "$HOME/.config/fish/work/extra_setup.fish"
 fi
 
