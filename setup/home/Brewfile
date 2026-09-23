@@ -13,3 +13,5 @@ cask "orcaslicer"
 # cask "librewolf" broke
 cask "firefox" 
 cask "zen" 
+
+cask "zed"
