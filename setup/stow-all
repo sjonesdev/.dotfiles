@@ -8,6 +8,7 @@ home_mac_dirs=(
 	zellij
 	gh
 	git
+	nvim
 )
 work_mac_dirs=(
 	kitty
@@ -17,7 +18,7 @@ work_mac_dirs=(
 )
 # TODO add zsh and maybe bash
 # gh git add once figure out how need to change for work
-	
+
 arch_dirs=(
 	bash
 	kitty

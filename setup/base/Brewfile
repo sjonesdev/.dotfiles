@@ -1,13 +1,14 @@
 # todo add app launcher
 brew "wget2"
-brew "man-db" 
-brew "jj" 
+brew "man-db"
+brew "jj"
 brew "gh"
-brew "fish" 
+brew "fish"
 brew "zellij"
 brew "stow"
 brew "fisher"
 brew "anomalyco/tap/opencode"
+brew "neovim"
 
 cask "postman"
 cask "visual-studio-code"
