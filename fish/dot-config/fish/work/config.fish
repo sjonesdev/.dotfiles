@@ -36,6 +36,8 @@ else
     fish_add_path "$PYENV_ROOT/bin"
 end
 pyenv init - fish | source
+
+fnm env --use-on-cd --shell fish | source
 fnm use default
 
 if not contains "$HOME/.config/fish/work/functions" $fish_function_path
