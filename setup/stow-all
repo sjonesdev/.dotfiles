@@ -14,7 +14,7 @@ work_mac_dirs=(
 	kitty
 	fish
 	zellij
-	nvm
+	nvim
 )
 # TODO add zsh and maybe bash
 # gh git add once figure out how need to change for work
@@ -48,7 +48,7 @@ elif [ "$1" = "work" ]; then
 	echo "Stowing work mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
 	dirs=${work_mac_dirs[@]}
 else
-	echo "Unrecognized system, please specify \"arch\" or \"mac\" as first argument"
+	echo "Unrecognized system, please specify \"arch\" or \"home\" or \"work\" as first argument"
 	exit 1
 fi
 
