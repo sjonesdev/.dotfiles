@@ -1,0 +1,1 @@
+command = $SHELL -C "zellij -l welcome"

@@ -3,53 +3,55 @@
 # directories in this repo containing dotfiles
 # TODO add personal vs work mac
 home_mac_dirs=(
-	kitty
-	fish
-	zellij
-	gh
-	git
-	nvim
+  ghostty
+  kitty
+  fish
+  zellij
+  gh
+  git
+  nvim
 )
 work_mac_dirs=(
-	kitty
-	fish
-	zellij
-	nvim
+  ghostty
+  kitty
+  fish
+  zellij
+  nvim
 )
 # TODO add zsh and maybe bash
 # gh git add once figure out how need to change for work
 
 arch_dirs=(
-	bash
-	kitty
-	hyprland
-	fish
-	zellij
-	gh
-	git
-	pipewire
+  bash
+  kitty
+  hyprland
+  fish
+  zellij
+  gh
+  git
+  pipewire
 )
 
 if [ -d "$HOME/.dotfiles" ]; then
-	echo "Using ~/.dotfiles as stow directory"
+  echo "Using ~/.dotfiles as stow directory"
 else
-	echo "Please clone this repo into the home directory and re-run this script"
-	exit 1
+  echo "Please clone this repo into the home directory and re-run this script"
+  exit 1
 fi
 
 # TODO use uname instead
 if [ "$1" = "arch" ]; then
-	echo "Stowing arch dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
-	dirs=${arch_dirs[@]}
+  echo "Stowing arch dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
+  dirs=${arch_dirs[@]}
 elif [ "$1" = "home" ]; then
-	echo "Stowing home mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
-	dirs=${home_mac_dirs[@]}
+  echo "Stowing home mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
+  dirs=${home_mac_dirs[@]}
 elif [ "$1" = "work" ]; then
-	echo "Stowing work mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
-	dirs=${work_mac_dirs[@]}
+  echo "Stowing work mac dotfiles into home directory. Note this requires all conflicting dotfiles to be deleted. It is recommended to backup existing dotfiles in the home directory in case of issues."
+  dirs=${work_mac_dirs[@]}
 else
-	echo "Unrecognized system, please specify \"arch\" or \"home\" or \"work\" as first argument"
-	exit 1
+  echo "Unrecognized system, please specify \"arch\" or \"home\" or \"work\" as first argument"
+  exit 1
 fi
 
 # -v Verbose
@@ -60,8 +62,8 @@ fi
 # $dir subdirectory of dotfiles repo to symlink dotfiles from into target
 echo "Stowing $dirs"
 for dir in ${dirs[@]}; do
-	echo "Stowing $dir"
-	stow -d "$HOME/.dotfiles" -v -R --dotfiles -t "$HOME" $dir
+  echo "Stowing $dir"
+  stow -d "$HOME/.dotfiles" -v -R --dotfiles -t "$HOME" $dir
 done
 
 echo "Finished stowing dotfiles, use the alias command \`restow <dotfiles subdir>\` to re-stow a particular directory in the future"
