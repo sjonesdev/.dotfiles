@@ -12,11 +12,14 @@
 [user]
 	email = spjones329@gmail.com
 	name = Samuel P. Jones
-	signingkey = 0B44ECB0714E57024B4BB836E9E52A2896C014DF
 [gpg]
 	format = openpgp
 [commit]
 	gpgsign = true
+
+# Machine-specific personal signing key, generated during setup and stowed.
+[include]
+	path = ~/.gitconfig-local
 
 # Work identity and SSH signing override the personal defaults.
 [includeIf "hasconfig:remote.*.url:git@github.com:flexport/**"]

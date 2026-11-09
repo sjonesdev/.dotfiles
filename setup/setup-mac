@@ -30,6 +30,8 @@ fi
 echo "Installing base homebrew packages"
 brew bundle --file "$HOME/.dotfiles/setup/base/Brewfile"
 
+bash "$HOME/.dotfiles/setup/setup-git-signing" || exit 1
+
 if [ "$IS_PERSONAL" = true ]; then
 	echo "Installing home homebrew packages"
 	brew bundle --file "$HOME/.dotfiles/setup/home/Brewfile"

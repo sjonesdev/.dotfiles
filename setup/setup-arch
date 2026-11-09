@@ -36,7 +36,7 @@ ARCH_PACKAGES=(
 	amd-ucode # micro code patches, may also need intel-ucode
 	man-db man-pages texinfo # pkg info
 	which sudo coreutils stow # system tools
-	jujutsu github-cli code nix direnv # devtools
+	jujutsu github-cli code nix direnv gnupg # devtools
 	curl wget dnsutils # internet
 	zip unzip # file tools
 	fish kitty zellij neovim nano # terminal stuff
@@ -78,6 +78,8 @@ else
 fi
 echo "Installing/upgrading all packgages"
 yay -Syu --noconfirm --needed "${ARCH_PACKAGES[@]}"
+
+bash "$HOME/.dotfiles/setup/setup-git-signing" || exit 1
 
 flatpak install flathub "${FLATPAK_PACKAGES[@]}"
 
