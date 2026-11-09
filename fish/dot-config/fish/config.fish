@@ -1,4 +1,9 @@
 if status is-interactive
+    # Let GPG's passphrase prompt use this terminal.
+    if isatty stdin
+        set -gx GPG_TTY (tty)
+    end
+
     switch (uname)
         case Darwin
             eval "$(/opt/homebrew/bin/brew shellenv)"

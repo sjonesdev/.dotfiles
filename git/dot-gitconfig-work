@@ -1,0 +1,7 @@
+[user]
+	email = sjones@flexport.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMns/39uXSKy2y883k6CbFDCmkUa/n2YhE9ZDwxcjS2X
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
