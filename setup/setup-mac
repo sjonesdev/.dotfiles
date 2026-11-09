@@ -14,6 +14,8 @@ else
 	exit 1
 fi
 
+bash "$HOME/.dotfiles/setup/stow-all" "$PROFILE"
+
 command_exists() {
 	type "$1" &> /dev/null ;
 }
@@ -30,7 +32,7 @@ fi
 echo "Installing base homebrew packages"
 brew bundle --file "$HOME/.dotfiles/setup/base/Brewfile"
 
-bash "$HOME/.dotfiles/setup/setup-git-signing" || exit 1
+bash "$HOME/.dotfiles/setup/setup-git-signing.sh" || exit 1
 
 if [ "$IS_PERSONAL" = true ]; then
 	echo "Installing home homebrew packages"
@@ -55,6 +57,10 @@ else
 	echo "Perfoming extra setup for work"
 	fish "$HOME/.config/fish/work/extra_setup.fish"
 fi
+
+bash "$HOME/.dotfiles/setup/stow-all" "$PROFILE"
+
+gpgconf --kill gpg-agent
 
 echo "GitHub auth status:"
 gh auth status

@@ -1,0 +1,15 @@
+#!/usr/bin/env fish
+
+set -l platform (uname -s)
+
+switch $platform
+    case Darwin
+        if not command -q pinentry-mac
+            echo "pinentry-mac is not on PATH; run: brew install pinentry-mac" >&2
+            exit 1
+        end
+        exec pinentry-mac $argv
+    case '*'
+        echo "No pinentry program configured for $platform" >&2
+        exit 1
+end

@@ -79,7 +79,7 @@ fi
 echo "Installing/upgrading all packgages"
 yay -Syu --noconfirm --needed "${ARCH_PACKAGES[@]}"
 
-bash "$HOME/.dotfiles/setup/setup-git-signing" || exit 1
+bash "$HOME/.dotfiles/setup/setup-git-signing.sh" || exit 1
 
 flatpak install flathub "${FLATPAK_PACKAGES[@]}"
 

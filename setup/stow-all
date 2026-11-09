@@ -10,6 +10,8 @@ home_mac_dirs=(
   gh
   git
   nvim
+  local
+  gnupg
 )
 work_mac_dirs=(
   ghostty
@@ -18,6 +20,8 @@ work_mac_dirs=(
   zellij
   nvim
   git
+  local
+  gnupg
 )
 # TODO add zsh and maybe bash
 # gh git add once figure out how need to change for work
@@ -31,6 +35,8 @@ arch_dirs=(
   gh
   git
   pipewire
+  local
+  gnupg
 )
 
 if [ -d "$HOME/.dotfiles" ]; then
@@ -64,7 +70,14 @@ fi
 echo "Stowing $dirs"
 for dir in ${dirs[@]}; do
   echo "Stowing $dir"
-  stow -d "$HOME/.dotfiles" -v -R --dotfiles -t "$HOME" $dir
+  stow_args=()
+  if [ "$dir" = "gnupg" ]; then
+    # Keep private keys in the home directory; only symlink managed config files.
+    mkdir -p "$HOME/.gnupg"
+    chmod 700 "$HOME/.gnupg"
+    stow_args+=(--no-folding)
+  fi
+  stow -d "$HOME/.dotfiles" -v -R --dotfiles "${stow_args[@]}" -t "$HOME" $dir
 done
 
 echo "Finished stowing dotfiles, use the alias command \`restow <dotfiles subdir>\` to re-stow a particular directory in the future"

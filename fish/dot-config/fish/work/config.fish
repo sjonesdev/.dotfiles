@@ -32,13 +32,19 @@ fish_add_path "/Users/sjones/.local/bin"
 fish_add_path "/Users/sjones/.bun/bin"
 if command -q pyenv
 else 
-    echo "Couldn't find pyenv command, adding pyenv to path"
+    if status is-interactive
+        echo "Couldn't find pyenv command, adding pyenv to path"
+    end
     fish_add_path "$PYENV_ROOT/bin"
 end
 pyenv init - fish | source
 
 fnm env --use-on-cd --shell fish | source
-fnm use default
+if status is-interactive
+    fnm use default
+else
+    fnm use default >/dev/null
+end
 
 if not contains "$HOME/.config/fish/work/functions" $fish_function_path
     set -p fish_function_path "$HOME/.config/fish/work/functions"

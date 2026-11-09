@@ -10,6 +10,7 @@ brew "stow"
 brew "fisher"
 brew "anomalyco/tap/opencode"
 brew "neovim"
+brew "pinentry-mac"
 
 cask "postman"
 cask "visual-studio-code"
